@@ -23,6 +23,100 @@ namespace FootballManager
         public MainWindow()
         {
             InitializeComponent();
+            FootballManagementDBEntities db = new FootballManagementDBEntities();
+            var mgs = from d in db.Managers
+                      select new
+                      {
+                          ManagerName = d.Name,
+                          ExperienceTime = d.Experience
+                      };
+            foreach (var item in mgs)
+            {
+                Console.WriteLine(item.ManagerName);
+                Console.WriteLine(item.ExperienceTime);
+            }
+            this.gridManagers.ItemsSource = mgs.ToList();
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            FootballManagementDBEntities db = new FootballManagementDBEntities();
+            Manager managerObject = new Manager()
+            {
+                Name = txtName.Text,
+                Specialization = txtSpecialization.Text,
+                Experience = txtExperience.Text
+            };
+            db.Managers.Add(managerObject);
+            db.SaveChanges();
+        }
+
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            FootballManagementDBEntities db = new FootballManagementDBEntities();
+            this.gridManagers.ItemsSource = db.Managers.ToList();
+        }
+        private int updatingManagerID = 0;
+        private void gridManagers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.gridManagers.SelectedIndex >= 0)
+            {
+                if (this.gridManagers.SelectedItems.Count >= 0)
+                {
+                    if (this.gridManagers.SelectedItems[0].GetType() == typeof(Manager))
+                    {
+                        Manager d = (Manager)this.gridManagers.SelectedItems[0];
+                        this.txtName1.Text = d.Name;
+                        this.txtSpecialization1.Text = d.Specialization;
+                        this.txtExperience2.Text = d.Experience;
+                        this.updatingManagerID = d.Id;
+                    }
+                }
+            }
+
+
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            FootballManagementDBEntities db = new FootballManagementDBEntities();
+            var r = from d in db.Managers
+                    where d.Id == this.updatingManagerID
+                    select d;
+            Manager obj = r.SingleOrDefault();
+
+            if (obj != null)
+            {
+                obj.Name = this.txtName1.Text;
+                obj.Specialization = this.txtSpecialization1.Text;
+                obj.Experience = this.txtExperience2.Text;
+            }
+
+            db.SaveChanges();
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult msgBoxResult = MessageBox.Show("Are you sure you want to Delete?", "Delete Manager",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning,
+                MessageBoxResult.No);
+
+            if(msgBoxResult == MessageBoxResult.Yes)
+            {
+                FootballManagementDBEntities db = new FootballManagementDBEntities();
+                var r = from d in db.Managers
+                        where d.Id == this.updatingManagerID
+                        select d;
+                Manager obj = r.SingleOrDefault();
+
+                if (obj != null)
+                {
+                    db.Managers.Remove(obj);
+                    db.SaveChanges();
+                }
+            }
+           
         }
     }
 }
