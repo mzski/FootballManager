@@ -85,6 +85,9 @@
     <Compile Include="Appointment.cs">
       <DependentUpon>SystemModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="AppointmentWindow.xaml.cs">
+      <DependentUpon>AppointmentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FootballManagementDBData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,6 +117,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SystemModels.edmx</DependentUpon>
     </Compile>
+    <Page Include="AppointmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

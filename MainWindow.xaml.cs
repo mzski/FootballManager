@@ -118,5 +118,14 @@ namespace FootballManager
             }
            
         }
+
+        private void btnAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            AppointmentWindow gridAppointments = new AppointmentWindow();
+            gridAppointments.Show();
+            this.Close();
+        }
+
+       
     }
 }
