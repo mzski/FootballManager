@@ -6,6 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="82989e08af0546ada2b54da5cd708d0b" Name="Diagram1">
         <EntityTypeShape EntityType="FootballManagementDBModel.Manager" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballManagementDBModel.Appointment" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="FootballManagementDBModel.LoginData" Width="1.5" PointX="3.375" PointY="3.875" />
+        <EntityTypeShape EntityType="FootballManagementDBModel.Player" Width="1.5" PointX="0.75" PointY="3.875" />
+        <AssociationConnector Association="FootballManagementDBModel.FK_Appointment_Manager" />
+        <AssociationConnector Association="FootballManagementDBModel.FK_Appointment_Patient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FootballManagementDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FootballManagementDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManagerID" Type="int" />
+          <Property Name="PlayerID" Type="int" />
+          <Property Name="AppointmentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LoginData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Manager">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,11 +31,54 @@
           <Property Name="Specialization" Type="varchar" MaxLength="50" />
           <Property Name="Experience" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Salary" Type="smallmoney" />
+        </EntityType>
+        <Association Name="FK_Appointment_Manager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointment_Patient">
+          <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="PlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FootballManagementDBModelStoreContainer">
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginData" EntityType="Self.LoginData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Appointment_Manager" Association="Self.FK_Appointment_Manager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointment_Patient" Association="Self.FK_Appointment_Patient">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FootballManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -30,10 +90,75 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Specialization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Experience" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointments" Relationship="FootballManagementDBModel.FK_Appointment_Manager" FromRole="Manager" ToRole="Appointment" />
         </EntityType>
         <EntityContainer Name="FootballManagementDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Managers" EntityType="Self.Manager" />
+          <EntitySet Name="Appointments" EntityType="FootballManagementDBModel.Appointment" />
+          <EntitySet Name="LoginDatas" EntityType="FootballManagementDBModel.LoginData" />
+          <EntitySet Name="Players" EntityType="FootballManagementDBModel.Player" />
+          <AssociationSet Name="FK_Appointment_Manager" Association="FootballManagementDBModel.FK_Appointment_Manager">
+            <End Role="Manager" EntitySet="Managers" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointment_Patient" Association="FootballManagementDBModel.FK_Appointment_Patient">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="PlayerID" Type="Int32" />
+          <Property Name="AppointmentDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Manager" Relationship="FootballManagementDBModel.FK_Appointment_Manager" FromRole="Appointment" ToRole="Manager" />
+          <NavigationProperty Name="Player" Relationship="FootballManagementDBModel.FK_Appointment_Patient" FromRole="Appointment" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="LoginData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Decimal" Precision="10" Scale="4" />
+          <NavigationProperty Name="Appointments" Relationship="FootballManagementDBModel.FK_Appointment_Patient" FromRole="Player" ToRole="Appointment" />
+        </EntityType>
+        <Association Name="FK_Appointment_Manager">
+          <End Type="FootballManagementDBModel.Manager" Role="Manager" Multiplicity="0..1" />
+          <End Type="FootballManagementDBModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointment_Patient">
+          <End Type="FootballManagementDBModel.Player" Role="Player" Multiplicity="0..1" />
+          <End Type="FootballManagementDBModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="PlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -47,6 +172,35 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Specialization" ColumnName="Specialization" />
                 <ScalarProperty Name="Experience" ColumnName="Experience" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Appointments">
+            <EntityTypeMapping TypeName="FootballManagementDBModel.Appointment">
+              <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginDatas">
+            <EntityTypeMapping TypeName="FootballManagementDBModel.LoginData">
+              <MappingFragment StoreEntitySet="LoginData">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="FootballManagementDBModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

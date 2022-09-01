@@ -82,7 +82,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Appointment.cs">
+      <DependentUpon>SystemModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FootballManagementDBData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FootballManagementDBData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LoginData.cs">
+      <DependentUpon>SystemModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Manager.cs">
+      <DependentUpon>SystemModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Player.cs">
       <DependentUpon>SystemModels.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemModels.Context.cs">
@@ -138,6 +152,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="FootballManagementDBData.xsc">
+      <DependentUpon>FootballManagementDBData.xsd</DependentUpon>
+    </None>
+    <None Include="FootballManagementDBData.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FootballManagementDBData.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FootballManagementDBData.xss">
+      <DependentUpon>FootballManagementDBData.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -26,5 +26,8 @@ namespace FootballManager
         }
     
         public virtual DbSet<Manager> Managers { get; set; }
+        public virtual DbSet<Appointment> Appointments { get; set; }
+        public virtual DbSet<LoginData> LoginDatas { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
     }
 }
