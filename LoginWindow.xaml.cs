@@ -18,7 +18,7 @@ using System.Data;
 namespace FootballManager
 {
     /// <summary>
-    /// Logika interakcji dla klasy LoginWindow.xaml
+    /// Interaction logic for the class LoginWindow.xaml
     /// </summary>
     public partial class LoginWindow : Window
     {
@@ -27,6 +27,9 @@ namespace FootballManager
             InitializeComponent();
         }
 
+        /// <summary>
+        ///  This method is connecting with DB and can give us access to program.
+        /// </summary>
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlCon = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\FootballManagementDB.mdf; Integrated Security = True");

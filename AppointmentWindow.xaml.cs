@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -16,7 +17,7 @@ using System.Windows.Shapes;
 namespace FootballManager
 {
     /// <summary>
-    /// Logika interakcji dla klasy AppointmentWindow.xaml
+    /// Interaction logic for the class AppointmentWindow.xaml
     /// </summary>
     public partial class AppointmentWindow : Window
     {
@@ -24,6 +25,11 @@ namespace FootballManager
         {
             InitializeComponent();
             FootballManagementDBEntities db = new FootballManagementDBEntities();
+
+
+            /// <summary>
+            ///  this piece of code combines data from relational databases
+            /// </summary>
 
             var result = from a in db.Appointments
                          select new

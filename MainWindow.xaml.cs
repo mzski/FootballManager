@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace FootballManager
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Interaction logic for the class MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -38,6 +38,9 @@ namespace FootballManager
             this.gridManagers.ItemsSource = mgs.ToList();
         }
 
+        /// <summary>
+        ///  This button lets us add Managers to our DB.
+        /// </summary>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             FootballManagementDBEntities db = new FootballManagementDBEntities();
@@ -51,13 +54,21 @@ namespace FootballManager
             db.SaveChanges();
         }
 
+        /// <summary>
+        ///  This button show us all Managers in DB.
+        /// </summary>
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
             FootballManagementDBEntities db = new FootballManagementDBEntities();
             this.gridManagers.ItemsSource = db.Managers.ToList();
         }
         private int updatingManagerID = 0;
-        private void gridManagers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+
+        /// <summary>
+        ///  This button show us information about the selected Manager
+        /// </summary>
+        private void GridManagers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.gridManagers.SelectedIndex >= 0)
             {
@@ -76,7 +87,9 @@ namespace FootballManager
 
 
         }
-
+        /// <summary>
+        ///  This button lets us change Managers data in DB.
+        /// </summary>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             FootballManagementDBEntities db = new FootballManagementDBEntities();
@@ -95,6 +108,9 @@ namespace FootballManager
             db.SaveChanges();
         }
 
+        /// <summary>
+        ///  This button lets us remove Manager from DB.
+        /// </summary>
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult msgBoxResult = MessageBox.Show("Are you sure you want to Delete?", "Delete Manager",
@@ -118,6 +134,9 @@ namespace FootballManager
             }
            
         }
+        /// <summary>
+        /// This button directs us to a window with information about Appointments.
+        /// </summary>
 
         private void btnAppointment_Click(object sender, RoutedEventArgs e)
         {
