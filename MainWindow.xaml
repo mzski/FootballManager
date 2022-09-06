@@ -12,7 +12,7 @@
             <ColumnDefinition Width="189*"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="gridManagers" HorizontalAlignment="Left" Margin="10,10,0,162" Width="750" />
+        <DataGrid x:Name="gridManagers" Margin="10,10,-6,162" Grid.ColumnSpan="1" />
         <Label  Content="Name: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top" Width="367" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.ColumnSpan="2"/>
         <TextBox  x:Name="txtName"  FontSize="15"  TextWrapping="WrapWithOverflow"  Text="" VerticalAlignment="Top" Margin="129,247,17,0"/>
         <Label  Content="Specializ.: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Width="367" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.ColumnSpan="2"/>
@@ -21,14 +21,14 @@
         <TextBox  x:Name="txtExperience"  FontSize="15"  TextWrapping="WrapWithOverflow"  Text="" VerticalAlignment="Top" Margin="129,322,17,0"/>
         <Button Content="Add" x:Name="btnAdd" HorizontalAlignment="Left" Height="30" Margin="219,324,0,0" VerticalAlignment="Top" Width="127" Click="btnAdd_Click" Grid.Column="1"/>
         <Button Content="Load" x:Name="btnLoad" HorizontalAlignment="Left" Height="30" Margin="29,324,0,0" VerticalAlignment="Top" Width="127" Click="btnLoad_Click" Grid.Column="1"/>
-        <Button Content="Update" x:Name="btnUpdate" HorizontalAlignment="Left" Height="30" Margin="219,140,0,0" VerticalAlignment="Top" Width="127" Click="btnUpdate_Click" Grid.Column="1"/>
-        <Label  Content="Name: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="29,5,0,0" VerticalAlignment="Top" Width="317" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
-        <Label  Content="Specializ. "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="29,50,0,0" VerticalAlignment="Top" Width="317" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
-        <Label  Content="Exp.: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="29,96,0,0" VerticalAlignment="Top" Width="317" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
-        <TextBox  x:Name="txtName1" Text="" FontSize="15"  TextWrapping="WrapWithOverflow"  Margin="118,12,51,0" Height="25" VerticalAlignment="Top" Grid.Column="1" />
-        <TextBox  x:Name="txtSpecialization1" Text=""  FontSize="15"  TextWrapping="WrapWithOverflow"  VerticalAlignment="Top" Margin="118,57,51,0" Height="25" Grid.Column="1" />
-        <TextBox  x:Name="txtExperience2" Text="" FontSize="15"  TextWrapping="WrapWithOverflow"  VerticalAlignment="Top" Margin="118,103,51,0" Height="25" Grid.Column="1" />
-        <Button Content="Remove" x:Name="btnRemove" HorizontalAlignment="Left" Height="30" Margin="29,140,0,0" VerticalAlignment="Top" Width="127" Click="btnRemove_Click" Grid.Column="1"/>
-        <Button Content="Check Appointments" x:Name="btnAppointment" HorizontalAlignment="Left" Height="54" Margin="75,215,0,0" VerticalAlignment="Top" Width="252" Click="btnAppointment_Click" Grid.Column="1"/>
+        <Button Content="Update" x:Name="btnUpdate" HorizontalAlignment="Left" Height="30" Margin="219,166,0,0" VerticalAlignment="Top" Width="127" Click="btnUpdate_Click" Grid.Column="1"/>
+        <Label  Content="Name: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="30,24,0,0" VerticalAlignment="Top" Width="318" Height="40" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
+        <Label  Content="Specializ. "  FontSize="20" VerticalContentAlignment="Center" Margin="30,69,30,0" VerticalAlignment="Top" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
+        <Label  Content="Exp.: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="30,116,0,0" VerticalAlignment="Top" Width="318" Height="38" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
+        <TextBox  x:Name="txtName1" Text="" FontSize="15"  TextWrapping="WrapWithOverflow"  Margin="118,32,51,0" Height="24" VerticalAlignment="Top" Grid.Column="1" />
+        <TextBox  x:Name="txtSpecialization1" Text=""  FontSize="15"  TextWrapping="WrapWithOverflow"  VerticalAlignment="Top" Margin="118,76,51,0" Height="25" Grid.Column="1" />
+        <TextBox  x:Name="txtExperience2" Text="" FontSize="15"  TextWrapping="WrapWithOverflow"  VerticalAlignment="Top" Margin="118,122,51,0" Height="26" Grid.Column="1" />
+        <Button Content="Remove" x:Name="btnRemove" HorizontalAlignment="Left" Height="30" Margin="29,166,0,0" VerticalAlignment="Top" Width="127" Click="btnRemove_Click" Grid.Column="1"/>
+        <Button Content="Check Appointments" x:Name="btnAppointment" HorizontalAlignment="Left" Height="54" Margin="75,242,0,0" VerticalAlignment="Top" Width="252" Click="btnAppointment_Click" Grid.Column="1"/>
     </Grid>
 </Window>

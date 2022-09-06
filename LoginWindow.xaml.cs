@@ -14,15 +14,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using System.Data.SqlTypes;
 
 namespace FootballManager
 {
     /// <summary>
-    /// Interaction logic for the class LoginWindow.xaml
+    /// represent log weindow system 
     /// </summary>
     public partial class LoginWindow : Window
     {
+        /// <summary>
+        /// create login window 
+        /// </summary>
         public LoginWindow()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// ffffffffffffffffs
+        /// </summary>
+        /// <param name="test">sssss</param>
+        /// <param name="ttttt2">yyyyyyyyyyyyyy</param>
+        public LoginWindow(int test, int ttttt2)
         {
             InitializeComponent();
         }

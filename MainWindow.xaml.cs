@@ -103,9 +103,10 @@ namespace FootballManager
                 obj.Name = this.txtName1.Text;
                 obj.Specialization = this.txtSpecialization1.Text;
                 obj.Experience = this.txtExperience2.Text;
+                db.SaveChanges();
             }
 
-            db.SaveChanges();
+            
         }
 
         /// <summary>
@@ -143,6 +144,10 @@ namespace FootballManager
             AppointmentWindow gridAppointments = new AppointmentWindow();
             gridAppointments.Show();
             this.Close();
+
+
+            LoginWindow login = new LoginWindow(6666,)
+
         }
 
        
