@@ -4,31 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FootballManager"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-
-    <Grid  Background="Gray" Margin="23,22,23,21">
+        mc:Ignorable="d"
+        Title="Club System" Height="587" Width="925" WindowStartupLocation="CenterScreen">
+    <Grid Background="#04c582">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="188*"/>
-            <ColumnDefinition Width="189*"/>
+            <ColumnDefinition Width="46*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="14*"/>
+            <ColumnDefinition Width="865*"/>
         </Grid.ColumnDefinitions>
+        <DataGrid x:Name="gridManagers" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,400" SelectionChanged="GridManagers_SelectionChanged" Background="Gray" BorderBrush="#FF0182FF" Foreground="Black" Grid.ColumnSpan="4" />
+        <Label Content="Name" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Background="#FFC1C1C1" Height="46" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="252" FontFamily="Bahnschrift SemiBold Condensed" FontSize="16" Grid.ColumnSpan="4"/>
+        <Label Content="Spec." HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top" Background="#FFC1C1C1" Height="46" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="252" FontFamily="Bahnschrift SemiBold Condensed" FontSize="16" Grid.ColumnSpan="4"/>
+        <Label Content="Exp." HorizontalAlignment="Left" Margin="10,299,0,0" VerticalAlignment="Top" Background="#FFC1C1C1" Height="46" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="252" FontFamily="Bahnschrift SemiBold Condensed" FontSize="16" Grid.ColumnSpan="4"/>
+        <TextBox x:Name ="txtName" HorizontalAlignment="Left" Margin="11,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" FontFamily="Bahnschrift" FontSize="13" RenderTransformOrigin="0.399,0.435" Background="WhiteSmoke" Grid.Column="3"/>
+        <TextBox x:Name ="txtSpecialization" HorizontalAlignment="Left" Margin="11,249,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" FontFamily="Bahnschrift" FontSize="13" RenderTransformOrigin="0.399,0.435" Background="WhiteSmoke" Grid.Column="3"/>
+        <TextBox x:Name ="txtExperience" HorizontalAlignment="Left" Margin="11,311,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" FontFamily="Bahnschrift" FontSize="13" RenderTransformOrigin="0.399,0.435" Background="WhiteSmoke" Grid.Column="3"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="588,240,0,0" VerticalAlignment="Top" Background="#FFC1C1C1" Height="46" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="252" FontFamily="Bahnschrift SemiBold Condensed" FontSize="16" Grid.Column="3"/>
+        <Label Content="Spec." HorizontalAlignment="Left" Margin="588,301,0,0" VerticalAlignment="Top" Background="#FFC1C1C1" Height="46" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="252" FontFamily="Bahnschrift SemiBold Condensed" FontSize="16" Grid.Column="3"/>
+        <Label Content="Exp." HorizontalAlignment="Left" Margin="588,363,0,0" VerticalAlignment="Top" Background="#FFC1C1C1" Height="46" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="252" FontFamily="Bahnschrift SemiBold Condensed" FontSize="16" Grid.Column="3"/>
+        <TextBox x:Name ="txtName1" HorizontalAlignment="Left" Margin="649,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" FontFamily="Bahnschrift" FontSize="13" RenderTransformOrigin="0.399,0.435" Background="WhiteSmoke" Grid.Column="3"/>
+        <TextBox x:Name ="txtSpecialization1" HorizontalAlignment="Left" Margin="649,313,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" FontFamily="Bahnschrift" FontSize="13" RenderTransformOrigin="0.399,0.435" Background="WhiteSmoke" Grid.Column="3"/>
+        <TextBox x:Name ="txtExperience1" HorizontalAlignment="Left" Margin="649,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180" FontFamily="Bahnschrift" FontSize="13" RenderTransformOrigin="0.399,0.435" Background="WhiteSmoke" Grid.Column="3"/>
+        <Button x:Name ="btnRemove" Content="Remove" HorizontalAlignment="Left" Margin="699,183,0,0" VerticalAlignment="Top" Height="32" Width="143" FontFamily="Bahnschrift SemiBold" FontSize="16" Click="btnRemove_Click" Grid.Column="3"/>
+        <Button Content="Check Appointments" x:Name="btnAppointment" HorizontalAlignment="Left" Height="54" Margin="250,199,0,0" VerticalAlignment="Top" Width="252" Click="btnAppointment_Click" Grid.Column="3"/>
+        <Button x:Name ="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="532,183,0,0" VerticalAlignment="Top" Height="32" Width="143" FontFamily="Bahnschrift SemiBold" FontSize="16" Click="btnUpdate_Click" Grid.Column="3"/>
+        <Button x:Name ="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="305,377,0,0" VerticalAlignment="Top" Height="32" Width="143" FontFamily="Bahnschrift SemiBold" FontSize="16" Click="btnLoad_Click" Grid.Column="3"/>
+        <Button x:Name ="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="305,315,0,0" VerticalAlignment="Top" Height="32" Width="143" FontFamily="Bahnschrift SemiBold" FontSize="16" Click="btnAdd_Click" Grid.Column="3"/>
 
-        <DataGrid x:Name="gridManagers" Margin="10,10,-6,162" Grid.ColumnSpan="1" />
-        <Label  Content="Name: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top" Width="367" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.ColumnSpan="2"/>
-        <TextBox  x:Name="txtName"  FontSize="15"  TextWrapping="WrapWithOverflow"  Text="" VerticalAlignment="Top" Margin="129,247,17,0"/>
-        <Label  Content="Specializ.: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Width="367" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.ColumnSpan="2"/>
-        <TextBox  x:Name="txtSpecialization"  FontSize="15"  TextWrapping="WrapWithOverflow"  Text="" VerticalAlignment="Top" Margin="129,283,17,0"/>
-        <Label  Content="Experience: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,313,0,0" VerticalAlignment="Top" Width="367" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.ColumnSpan="2"/>
-        <TextBox  x:Name="txtExperience"  FontSize="15"  TextWrapping="WrapWithOverflow"  Text="" VerticalAlignment="Top" Margin="129,322,17,0"/>
-        <Button Content="Add" x:Name="btnAdd" HorizontalAlignment="Left" Height="30" Margin="219,324,0,0" VerticalAlignment="Top" Width="127" Click="btnAdd_Click" Grid.Column="1"/>
-        <Button Content="Load" x:Name="btnLoad" HorizontalAlignment="Left" Height="30" Margin="29,324,0,0" VerticalAlignment="Top" Width="127" Click="btnLoad_Click" Grid.Column="1"/>
-        <Button Content="Update" x:Name="btnUpdate" HorizontalAlignment="Left" Height="30" Margin="219,166,0,0" VerticalAlignment="Top" Width="127" Click="btnUpdate_Click" Grid.Column="1"/>
-        <Label  Content="Name: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="30,24,0,0" VerticalAlignment="Top" Width="318" Height="40" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
-        <Label  Content="Specializ. "  FontSize="20" VerticalContentAlignment="Center" Margin="30,69,30,0" VerticalAlignment="Top" Height="39" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
-        <Label  Content="Exp.: "  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="30,116,0,0" VerticalAlignment="Top" Width="318" Height="38" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Grid.Column="1"/>
-        <TextBox  x:Name="txtName1" Text="" FontSize="15"  TextWrapping="WrapWithOverflow"  Margin="118,32,51,0" Height="24" VerticalAlignment="Top" Grid.Column="1" />
-        <TextBox  x:Name="txtSpecialization1" Text=""  FontSize="15"  TextWrapping="WrapWithOverflow"  VerticalAlignment="Top" Margin="118,76,51,0" Height="25" Grid.Column="1" />
-        <TextBox  x:Name="txtExperience2" Text="" FontSize="15"  TextWrapping="WrapWithOverflow"  VerticalAlignment="Top" Margin="118,122,51,0" Height="26" Grid.Column="1" />
-        <Button Content="Remove" x:Name="btnRemove" HorizontalAlignment="Left" Height="30" Margin="29,166,0,0" VerticalAlignment="Top" Width="127" Click="btnRemove_Click" Grid.Column="1"/>
-        <Button Content="Check Appointments" x:Name="btnAppointment" HorizontalAlignment="Left" Height="54" Margin="75,242,0,0" VerticalAlignment="Top" Width="252" Click="btnAppointment_Click" Grid.Column="1"/>
     </Grid>
 </Window>

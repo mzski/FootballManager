@@ -70,6 +70,7 @@ namespace FootballManager
         /// </summary>
         private void GridManagers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (this.gridManagers.SelectedIndex >= 0)
             {
                 if (this.gridManagers.SelectedItems.Count >= 0)
@@ -79,13 +80,11 @@ namespace FootballManager
                         Manager d = (Manager)this.gridManagers.SelectedItems[0];
                         this.txtName1.Text = d.Name;
                         this.txtSpecialization1.Text = d.Specialization;
-                        this.txtExperience2.Text = d.Experience;
+                        this.txtExperience1.Text = d.Experience;
                         this.updatingManagerID = d.Id;
                     }
                 }
             }
-
-
         }
         /// <summary>
         ///  This button lets us change Managers data in DB.
@@ -102,11 +101,9 @@ namespace FootballManager
             {
                 obj.Name = this.txtName1.Text;
                 obj.Specialization = this.txtSpecialization1.Text;
-                obj.Experience = this.txtExperience2.Text;
+                obj.Experience = this.txtExperience1.Text;
                 db.SaveChanges();
             }
-
-            
         }
 
         /// <summary>
@@ -114,6 +111,7 @@ namespace FootballManager
         /// </summary>
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
+            
             MessageBoxResult msgBoxResult = MessageBox.Show("Are you sure you want to Delete?", "Delete Manager",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning,
@@ -146,7 +144,7 @@ namespace FootballManager
             this.Close();
 
 
-            LoginWindow login = new LoginWindow(6666,)
+            
 
         }
 
