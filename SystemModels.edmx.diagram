@@ -7,10 +7,13 @@
       <Diagram DiagramId="82989e08af0546ada2b54da5cd708d0b" Name="Diagram1">
         <EntityTypeShape EntityType="FootballManagementDBModel.Manager" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FootballManagementDBModel.Appointment" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="FootballManagementDBModel.LoginData" Width="1.5" PointX="3.375" PointY="3.875" />
-        <EntityTypeShape EntityType="FootballManagementDBModel.Player" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="FootballManagementDBModel.LoginData" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="FootballManagementDBModel.Player" Width="1.5" PointX="0.75" PointY="4" />
         <AssociationConnector Association="FootballManagementDBModel.FK_Appointment_Manager" />
         <AssociationConnector Association="FootballManagementDBModel.FK_Appointment_Patient" />
+        <EntityTypeShape EntityType="FootballManagementDBModel.Error" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FootballManagementDBModel.PlayerBio" Width="1.5" PointX="3.875" PointY="4" />
+        <AssociationConnector Association="FootballManagementDBModel.FK_PlayerBio_Player" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

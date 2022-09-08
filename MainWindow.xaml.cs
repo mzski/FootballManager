@@ -20,6 +20,9 @@ namespace FootballManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -137,6 +140,7 @@ namespace FootballManager
         /// This button directs us to a window with information about Appointments.
         /// </summary>
 
+        
         private void btnAppointment_Click(object sender, RoutedEventArgs e)
         {
             AppointmentWindow gridAppointments = new AppointmentWindow();

@@ -14,6 +14,14 @@
           <Property Name="PlayerID" Type="int" />
           <Property Name="AppointmentDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="LoginData">
           <Key>
             <PropertyRef Name="Id" />
@@ -40,6 +48,15 @@
           <Property Name="Contact" Type="varchar" MaxLength="50" />
           <Property Name="Salary" Type="smallmoney" />
         </EntityType>
+        <EntityType Name="PlayerBio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Height" Type="varchar" MaxLength="50" />
+          <Property Name="Weight" Type="nchar" MaxLength="10" />
+          <Property Name="Age" Type="int" />
+        </EntityType>
         <Association Name="FK_Appointment_Manager">
           <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
@@ -64,11 +81,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PlayerBio_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="PlayerBio" Type="Self.PlayerBio" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerBio">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FootballManagementDBModelStoreContainer">
           <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginData" EntityType="Self.LoginData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerBio" EntityType="Self.PlayerBio" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Appointment_Manager" Association="Self.FK_Appointment_Manager">
             <End Role="Manager" EntitySet="Manager" />
             <End Role="Appointment" EntitySet="Appointment" />
@@ -76,6 +107,10 @@
           <AssociationSet Name="FK_Appointment_Patient" Association="Self.FK_Appointment_Patient">
             <End Role="Player" EntitySet="Player" />
             <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerBio_Player" Association="Self.FK_PlayerBio_Player">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="PlayerBio" EntitySet="PlayerBio" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -104,6 +139,12 @@
           <AssociationSet Name="FK_Appointment_Patient" Association="FootballManagementDBModel.FK_Appointment_Patient">
             <End Role="Player" EntitySet="Players" />
             <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <EntitySet Name="Errors" EntityType="FootballManagementDBModel.Error" />
+          <EntitySet Name="PlayerBios" EntityType="FootballManagementDBModel.PlayerBio" />
+          <AssociationSet Name="FK_PlayerBio_Player" Association="FootballManagementDBModel.FK_PlayerBio_Player">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="PlayerBio" EntitySet="PlayerBios" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Appointment">
@@ -134,6 +175,7 @@
           <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Salary" Type="Decimal" Precision="10" Scale="4" />
           <NavigationProperty Name="Appointments" Relationship="FootballManagementDBModel.FK_Appointment_Patient" FromRole="Player" ToRole="Appointment" />
+          <NavigationProperty Name="PlayerBio" Relationship="FootballManagementDBModel.FK_PlayerBio_Player" FromRole="Player" ToRole="PlayerBio" />
         </EntityType>
         <Association Name="FK_Appointment_Manager">
           <End Type="FootballManagementDBModel.Manager" Role="Manager" Multiplicity="0..1" />
@@ -156,6 +198,37 @@
             </Principal>
             <Dependent Role="Appointment">
               <PropertyRef Name="PlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PlayerBio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Height" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Salary" Type="Decimal" Precision="10" Scale="4" />
+          <NavigationProperty Name="Player" Relationship="FootballManagementDBModel.FK_PlayerBio_Player" FromRole="PlayerBio" ToRole="Player" />
+        </EntityType>
+        <Association Name="FK_PlayerBio_Player">
+          <End Type="FootballManagementDBModel.Player" Role="Player" Multiplicity="1" />
+          <End Type="FootballManagementDBModel.PlayerBio" Role="PlayerBio" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerBio">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -200,6 +273,25 @@
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="FootballManagementDBModel.Error">
+              <MappingFragment StoreEntitySet="Error">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerBios">
+            <EntityTypeMapping TypeName="FootballManagementDBModel.PlayerBio">
+              <MappingFragment StoreEntitySet="PlayerBio">
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

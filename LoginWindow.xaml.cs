@@ -19,7 +19,7 @@ using System.Data.SqlTypes;
 namespace FootballManager
 {
     /// <summary>
-    /// represent log weindow system 
+    /// represent log window system 
     /// </summary>
     public partial class LoginWindow : Window
     {

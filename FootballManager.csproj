@@ -88,6 +88,9 @@
     <Compile Include="AppointmentWindow.xaml.cs">
       <DependentUpon>AppointmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Error.cs">
+      <DependentUpon>SystemModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="FootballManagementDBData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +103,9 @@
       <DependentUpon>SystemModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Player.cs">
+      <DependentUpon>SystemModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerBio.cs">
       <DependentUpon>SystemModels.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemModels.Context.cs">
