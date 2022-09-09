@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlTypes;
+using System.Data.SqlClient;
 
 namespace FootballManager
 {
@@ -39,12 +40,6 @@ namespace FootballManager
             SqlConnection sqlCon = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\FootballManagementDB.mdf; Integrated Security = True");
 
 
-            string InsertQuery = "Insert into Error(Username,Password) values ('" + txtUsername.Text + "','" + txtPassword.Password + "')";
-            sqlCon.Open();
-            SqlCommand cmd = new SqlCommand(InsertQuery, sqlCon);
-            cmd.ExecuteNonQuery();
-            sqlCon.Close();
-
             try
             {
                 if(sqlCon.State == ConnectionState.Closed)
@@ -63,7 +58,10 @@ namespace FootballManager
                 }
                 else
                 {
-                    
+                    string InsertQuery = "Insert into Error(Username,Password) values ('" + txtUsername.Text + "','" + txtPassword.Password + "')";
+                    SqlCommand cmd = new SqlCommand(InsertQuery, sqlCon);
+                    cmd.ExecuteNonQuery();
+                    sqlCon.Close();
                     MessageBox.Show("Username or Password is incorreect!");
                 }
             }

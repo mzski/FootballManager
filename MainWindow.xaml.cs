@@ -42,8 +42,10 @@ namespace FootballManager
         }
 
         /// <summary>
-        ///  This button lets us add Managers to our DB.
+        /// 
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             FootballManagementDBEntities db = new FootballManagementDBEntities();
@@ -78,14 +80,13 @@ namespace FootballManager
             {
                 if (this.gridManagers.SelectedItems.Count >= 0)
                 {
-                    if (this.gridManagers.SelectedItems[0].GetType() == typeof(Manager))
-                    {
+                    
                         Manager d = (Manager)this.gridManagers.SelectedItems[0];
                         this.txtName1.Text = d.Name;
                         this.txtSpecialization1.Text = d.Specialization;
                         this.txtExperience1.Text = d.Experience;
                         this.updatingManagerID = d.Id;
-                    }
+                    
                 }
             }
         }

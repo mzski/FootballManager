@@ -18,7 +18,6 @@ namespace FootballManager
         public string Height { get; set; }
         public string Weight { get; set; }
         public Nullable<int> Age { get; set; }
-        public Nullable<decimal> Salary { get; set; }
     
         public virtual Player Player { get; set; }
     }
