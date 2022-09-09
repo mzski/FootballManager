@@ -38,22 +38,35 @@ namespace FootballManager
                              ManagerName = a.Manager.Name,
                              a.Manager.Specialization,
                              a.PlayerID,
-                            PatientName =  a.Player.Name,
+                             PlayerName =  a.Player.Name,
                              a.Player.Contact,
                              a.AppointmentDate
+                          
                          };
-            var resultOuterManager = from d in db.Managers
+
+
+
+            var resultOuterManager = from d in db.Players
                                      from a in d.Appointments.DefaultIfEmpty()
                                      select new
                                      {
-                                         d.Name,
+                                         Player = a.Player.Name,
+                                         d.PlayerBio.Height,
+                                         d.PlayerBio.Weight,
+                                         d.PlayerBio.Age,
                                          ApptID = a.Id.ToString(),
-                                         a.AppointmentDate,
-                                         Player = a.Player.Name
+                                         a.AppointmentDate
+                                        
                                      };
 
-            this.gridAppointments.ItemsSource = resultOuterManager.ToList();
+            this.gridAppointments.ItemsSource = result.ToList();
+            this.gridPlayers.ItemsSource = resultOuterManager.ToList();
+
         }
-        
+
+        private void gridAppointments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

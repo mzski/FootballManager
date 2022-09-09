@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:FootballManager"
         mc:Ignorable="d"
         Title="AppointmentWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <DataGrid x:Name="gridAppointments" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+    <Grid Background="GreenYellow">
+        <DataGrid x:Name="gridAppointments" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,254" SelectionChanged="gridAppointments_SelectionChanged"/>
+        <DataGrid x:Name="gridPlayers" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,238,0,0"/>
     </Grid>
 </Window>

@@ -33,8 +33,10 @@ namespace FootballManager
         }
 
         /// <summary>
-        ///  This method is connecting with DB and can give us access to program.
+        /// This method is connecting with DB and can give us access to program.
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlCon = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\FootballManagementDB.mdf; Integrated Security = True");
@@ -57,12 +59,15 @@ namespace FootballManager
 
                 }
                 else
-                {
-                    string InsertQuery = "Insert into Error(Username,Password) values ('" + txtUsername.Text + "','" + txtPassword.Password + "')";
-                    SqlCommand cmd = new SqlCommand(InsertQuery, sqlCon);
-                    cmd.ExecuteNonQuery();
+                { 
+                    SqlCommand cmd = new SqlCommand("Insert into Error(Username,Password) values ('" + txtUsername.Text + "','" + txtPassword.Password + "')",sqlCon);
+                    int i = cmd.ExecuteNonQuery();
+                    if (i != 0)
+                    {
+                        MessageBox.Show("Username or Password is incorreect!");
+                    }
                     sqlCon.Close();
-                    MessageBox.Show("Username or Password is incorreect!");
+                    
                 }
             }
             catch (Exception ex)

@@ -12,8 +12,9 @@
         <AssociationConnector Association="FootballManagementDBModel.FK_Appointment_Manager" />
         <AssociationConnector Association="FootballManagementDBModel.FK_Appointment_Patient" />
         <EntityTypeShape EntityType="FootballManagementDBModel.Error" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="FootballManagementDBModel.PlayerBio" Width="1.5" PointX="3.875" PointY="4" />
-        <AssociationConnector Association="FootballManagementDBModel.FK_PlayerBio_Player" />
+        <EntityTypeShape EntityType="FootballManagementDBModel.PlayerBio" Width="1.5" PointX="4.375" PointY="4.125" />
+        <AssociationConnector Association="FootballManagementDBModel.FK_PlayerBio_Player" ManuallyRouted="false" >
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

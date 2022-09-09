@@ -21,7 +21,7 @@ namespace FootballManager
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// 
+        /// display of preliminary information in gridManagers before click Load button
         /// </summary>
         public MainWindow()
         {
@@ -42,7 +42,7 @@ namespace FootballManager
         }
 
         /// <summary>
-        /// 
+        /// Adding a manager to the table
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -71,8 +71,10 @@ namespace FootballManager
 
 
         /// <summary>
-        ///  This button show us information about the selected Manager
+        /// This button show us information about the selected Manager
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GridManagers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -91,8 +93,10 @@ namespace FootballManager
             }
         }
         /// <summary>
-        ///  This button lets us change Managers data in DB.
+        /// This button lets us change Managers data in DB.
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             FootballManagementDBEntities db = new FootballManagementDBEntities();
@@ -111,8 +115,10 @@ namespace FootballManager
         }
 
         /// <summary>
-        ///  This button lets us remove Manager from DB.
+        /// This button lets us remove Manager from DB.
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             
@@ -137,11 +143,15 @@ namespace FootballManager
             }
            
         }
+
+
         /// <summary>
         /// This button directs us to a window with information about Appointments.
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
-        
+
         private void btnAppointment_Click(object sender, RoutedEventArgs e)
         {
             AppointmentWindow gridAppointments = new AppointmentWindow();
