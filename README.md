@@ -1,13 +1,19 @@
 # FootballManager
-
-The project is based on a local, relational database.
-
-The application allows you to display data about managers available in the database.
+The FootballManager application is used to store information about managers of individual players
+and about the players themselves. 
 This data can be modified and deleted.
+Additionally, we have access to information on meetings between managers and players.
+The entire application is secured with a login window that saves incorrectly entered login data for security purposes.
 
-Before this option, we must log in with the correct password and login.
+The project has 6 tables and 3 wpf windows.
+There are relational databases in the project.
 
-Additionally, we can display the scheduled meetings of managers and players.
-
+Technologies used:
+User interface:WPF windows
 Project ORM: Entity Framework
-User interface: WPF
+Local database
+
+Credits: I owe the project to Indian YouTubers.
+
+PS. The design is primitive and is still under development, therefore for help purposes, or
+contact, please write to the email: mzfeeder312@gmail.com
